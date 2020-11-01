@@ -1,46 +1,46 @@
-package com.composi;
+package composite;
 
 import java.util.ArrayList;
 import java.util.List;
-interface Composant{
 
-	void showSize();
-}
-
-public class Fichiers implements Composant{
-    Long size;
-    String name;
-    
-	public Fichiers(Long size, String name) {
-		super();
-		this.size = size;
-		this.name = name;
+public class Composite extends Composant {
+	
+	int taille_c;
+	protected List<Composant> composants;
+	
+	public Composite(String nom) {
+		super(nom);
+		this.composants = new ArrayList<Composant>();
 	}
+
 
 	@Override
-	public void showSize() {
-		
-	}
-
-}
-
-class Repertoires implements Composant{
-    String name;
-    List<Composant> composants = new ArrayList<>();
-   
-    public Repertoires(String name) {
-		super();
-		this.name = name;
-	}
-	public void addComposant(Composant com) {
-    	composants.add(com);
-    }
-	@Override
-	public void showSize() {
-		System.out.println(name);
-		for(Composant c : composants) {
-			c.showSize();
+	public void opperation() {
+		String tab ="";
+		for(int i=0; i< niveau; i++) tab += "--";
+		System.out.println(tab + " Composite " + nom + " taille totale du dossier " + showSize() + " octets");
+		for (Composant item:composants ) {
+			item.opperation();
 		}
 	}
 	
+
+
+	public void addComposant(Composant c){
+		c.niveau = this.niveau + 1;
+		composants.add(c);
+	}
+	
+	
+	public void removeComposant(Composant c) {
+		composants.remove(c);
+	}
+	
+	@Override
+	public int showSize() {
+		for(Composant c : composants) {
+			taille_c = this.taille_c + c.taille;
+		} 
+		return taille_c;
+	}
 }
