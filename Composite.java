@@ -5,7 +5,6 @@ import java.util.List;
 
 public class Composite extends Composant {
 	
-	int taille_c;
 	protected List<Composant> composants;
 	
 	public Composite(String nom) {
@@ -17,10 +16,10 @@ public class Composite extends Composant {
 	@Override
 	public void opperation() {
 		String tab ="";
-		for(int i=0; i< niveau; i++) tab += "--";
-		System.out.println(tab + " Composite " + nom + " taille totale du dossier " + showSize() + " octets");
-		for (Composant item:composants ) {
-			item.opperation();
+		for(int i=0; i< niveau; i++) tab += "----";
+		System.out.println(tab + "Composite " + nom + " taille totale du dossier " + showSize() + " octets");
+		for (Composant c:composants ) {
+			c.opperation();
 		}
 	}
 	
@@ -38,9 +37,11 @@ public class Composite extends Composant {
 	
 	@Override
 	public int showSize() {
-		for(Composant c : composants) {
-			taille_c = this.taille_c + c.taille;
+		int taille = 0 ;
+		for(Composant c: composants) {
+			taille += c.showSize();
 		} 
-		return taille_c;
+		return taille;
 	}
+	
 }
