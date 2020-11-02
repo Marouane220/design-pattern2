@@ -10,14 +10,15 @@ public class Element extends Composant {
 	
 	@Override
 	public int showSize() {
-		return taille;
+		
+		return this.taille;
 	}
 	
 	@Override
 	public void opperation() {
 		String tab ="";
-		for(int i=0; i< niveau; i++) tab += "--";
-		System.out.println(tab + " Element "+ nom + " de taille "+ showSize() + " octets ");
+		for(int i=0; i< niveau; i++) tab += "----";
+		System.out.println(tab + "Element "+ nom + " de taille "+ showSize() + " octets ");
 		
 	}
 }
