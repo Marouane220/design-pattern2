@@ -12,9 +12,7 @@ public abstract class Composant {
 	public Composant(String nom) {
 		this.nom = nom;
 	}
+
 	
-	public int getSize(int taille) {
-		return taille;
-	}
 
 }
