@@ -1,12 +1,18 @@
 package ob;
+import java.util.Observer;
 
 public class HexaObserver extends Observer {
-     public HexaObserver(Subject subject){
-	      this.subject = subject;
-	      this.subject.attach(this);
-	 }
-	 String hex = Integer.toHexString(subject.state);
-	 public void update(){
-	    	System.out.println("La valeur du compteur en binaire est"+hex);
-	    }
+	 Observable subject;
+	    public HexaObserver(Observable obs){
+		      this.subject = obs;
+		      Subject.addObserver(this);
+		 }
+		 public void update(Observable obs,Object arg){
+			    if (obs instanceof Subject) {
+			    Subject sujet=(Subject)obs;
+			    this.state= sujet.getstate();
+		    	System.out.println("La valeur du compteur en Hexadecimale est" +Integer.toHexString(subject.state));
+		        }
+		 }
+
 }

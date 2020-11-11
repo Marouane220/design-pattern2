@@ -1,29 +1,23 @@
 package ob;
 
 import java.util.ArrayList;
+
 import java.util.List;
+import java.util.Observable;
 
 
-public class Subject {
+public class Subject extends observable {
  int state;
- List<Observer> observers = new ArrayList<>();
  
  public int getstate(){
 	 return state;
  }
  
  public void setstate() {
-	state=(state+1);
+	state=(state+1)%60;
+	setchange();
 	notifyAllObservors();
  }
  
- public void attach(Observer obs){
-	 observers.add(obs);
- }
- 
- public void notifyAllObservors(){
-	 for (Observer obs : observers) {
-		 obs.update();
-	 }
- }
+
 }
